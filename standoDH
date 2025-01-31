@@ -319,3 +319,96 @@ end)
 
 -- Add the tool to the player's backpack
 tool.Parent = game.Players.LocalPlayer.Backpack
+
+-- Create the tool
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = ".doggy tool"
+
+-- Function to send a chat message
+local function sendChatMessage(message)
+    local replicatedStorage = game:GetService("ReplicatedStorage")
+    local defaultChatEvents = replicatedStorage:WaitForChild("DefaultChatSystemChatEvents", 10) -- Wait for the chat system
+
+    if defaultChatEvents and defaultChatEvents:FindFirstChild("SayMessageRequest") then
+        -- Use SayMessageRequest to send the message
+        defaultChatEvents.SayMessageRequest:FireServer(message, "All")
+    else
+        warn("DefaultChatSystemChatEvents or SayMessageRequest not found!")
+    end
+end
+
+-- Add functionality when the tool is activated
+tool.Activated:Connect(function()
+    local player = game.Players.LocalPlayer -- The player holding the tool
+    local mouse = player:GetMouse() -- Get the player's mouse object
+
+    -- Check if the mouse target is a player's character
+    local target = mouse.Target
+    if target then
+        local targetParent = target.Parent
+        local targetPlayer = game.Players:GetPlayerFromCharacter(targetParent)
+
+        if targetPlayer then
+            local message = ".doggy " .. targetPlayer.Name -- The clicked player's username
+            print(message)
+
+            -- Send the message via DefaultChatSystemChatEvents
+            sendChatMessage(message)
+        else
+            sendChatMessage("No player detected!")
+        end
+    else
+        sendChatMessage("No target selected!")
+    end
+end)
+
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+-- Create the tool
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = ".blow tool"
+
+-- Function to send a chat message
+local function sendChatMessage(message)
+    local replicatedStorage = game:GetService("ReplicatedStorage")
+    local defaultChatEvents = replicatedStorage:WaitForChild("DefaultChatSystemChatEvents", 10) -- Wait for the chat system
+
+    if defaultChatEvents and defaultChatEvents:FindFirstChild("SayMessageRequest") then
+        -- Use SayMessageRequest to send the message
+        defaultChatEvents.SayMessageRequest:FireServer(message, "All")
+    else
+        warn("DefaultChatSystemChatEvents or SayMessageRequest not found!")
+    end
+end
+
+-- Add functionality when the tool is activated
+tool.Activated:Connect(function()
+    local player = game.Players.LocalPlayer -- The player holding the tool
+    local mouse = player:GetMouse() -- Get the player's mouse object
+
+    -- Check if the mouse target is a player's character
+    local target = mouse.Target
+    if target then
+        local targetParent = target.Parent
+        local targetPlayer = game.Players:GetPlayerFromCharacter(targetParent)
+
+        if targetPlayer then
+            local message = ".blow " .. targetPlayer.Name -- The clicked player's username
+            print(message)
+
+            -- Send the message via DefaultChatSystemChatEvents
+            sendChatMessage(message)
+        else
+            sendChatMessage("No player detected!")
+        end
+    else
+        sendChatMessage("No target selected!")
+    end
+end)
+
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
